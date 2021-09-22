@@ -1,0 +1,100 @@
+extends template.pug
+block nav
+    script(type='text/javascript' src='public/js/loadingoverlay.min.js')
+    script(type="text/javascript").
+        if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-150126533-6', 'auto');
+            ga('send', 'pageview');
+            ga(function (tracker) {
+                var uid = tracker.get('clientId');
+                $.ajax({
+                    url: 'submitAnalytics.php',
+                    type: 'POST',
+                    data: {"i": getParameterByName("i"), "userID": uid},
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+            });
+            (function () {
+                var t, i, e, n = window, o = document, a = arguments, s = "script",
+                    r = ["config", "track", "identify", "visit", "push", "call", "trackForm", "trackClick"],
+                    c = function () {
+                        var t, i = this;
+                        for (i._e = [], t = 0; r.length > t; t++) (function (t) {
+                            i[t] = function () {
+                                return i._e.push([t].concat(Array.prototype.slice.call(arguments, 0))), i
+                            }
+                        })(r[t])
+                    };
+                for (n._w = n._w || {}, t = 0; a.length > t; t++) n._w[a[t]] = n[a[t]] = n[a[t]] || new c;
+                i = o.createElement(s), i.async = 1, i.src = "//static.woopra.com/js/w.js", e = o.getElementsByTagName(s)[0], e.parentNode.insertBefore(i, e)
+            })("woopra");
+            woopra.config({
+                domain: 'scheduler.melihsunbul.com'
+            });
+            woopra.track();
+        }
+    style(type="text/css").
+        td {
+            color: #000000;
+        }
+
+        .navbar-brand-name > img {
+            max-height: 70px;
+            width: auto;
+            padding: 0 15px 0 0;
+        }
+
+        .navbar {
+            min-height: 90px;
+            background-color: #4788c6;
+        }
+
+        .navbar-collapse.in {
+            margin-top: 20px;
+        }
+    nav.navbar.navbar-default.navbar-inverse
+        div.container-fluid
+            div.navbar-header
+                a.navbar-brand(href=subdir)
+                    div.navbar-brand-name(style="margin-top: -10px")
+				        img(src="../01590330314600_q5hyyjv6z_hex_041e42_hex2_xxxxxx_patt185-black.png")
+				        img(src="../ing-amblem.png")
+                        span(style='color:#ffffff') Bilkent University Scheduler
+                button.navbar-toggle(style="margin-top:20px" type='button', data-toggle='collapse', data-target='#navbar-main')
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+            div#navbar-main.navbar-collapse.collapse
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a
+                            button.btn.btn-default(type='button', onclick="window.location.href='" + "/?i=" + inputDataJSON + "'") Edit Courses
+                    li
+                        a
+                            button.btn.btn-success.btn-expand.glyphicon.glyphicon-collapse-down(type='button') &nbsp;Expand All Schedules
+                    li
+                        a
+                            button.btn-listview.btn.glyphicon.glyphicon-list.btn-default(type='button') &nbsp;List View
+
+
+block content
+    #results.container-fluid(style='min-height:200px;')
+    script(src="public/js/" + progressLoaderJS type="text/javascript")
+    script(type="text/javascript").
+        window.addEventListener("load", function(){makeProgress(#{max_exec_time});}, false);

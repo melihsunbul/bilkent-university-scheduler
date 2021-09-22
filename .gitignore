@@ -1,0 +1,12 @@
+.idea/
+.idea/*
+vendor/
+vendor/*
+.scannerwork/
+.scannerwork/*
+build/
+build/*
+schedules-created.txt
+error_log
+*.sqlite
+/node_modules/

@@ -1,0 +1,51 @@
+div.col-md-12
+	div.page-header(style="margin-top:0px;")
+		if isScheduleExist
+			h2
+				strong #{numSchedules.numStr}
+				|&nbsp;#{numSchedules.string} Generated
+			h3
+				|from #{sectionCount.num} #{sectionCount.string} of #{classCount.num} #{classCount.string}
+		else 
+			h2(style="text-align: center") No schedule available :(
+	if isScheduleExist			
+		h3(style="text-decoration: underline; color: red") Important Notes		
+		h4.glyphicon.glyphicon-ok(style="color:#4CAF50;")      means all courses in your list are included that schedule. 		
+		h4 * When you hover a class, you can see the section and professor of that class.
+	include calendarScheduleViewer.pug
+	include listScheduleViewer.pug
+
+	div.col-md-12
+		div.col-md-4
+		div.col-md-4
+		if numSchedules.num > 100
+			h1(style='text-align:center;') View Truncated to Best 100 Schedules
+		div.col-md-4
+
+script(src="public/js/" + scheduleViewerJS type="text/javascript")
+
+div.container-fluid(style='margin-top:30px;')
+	div.col-md-12.well.well-lg(style='text-align:center;')
+		div.col-md-6
+			h4 Made by Melih Sünbül
+			h5 Feel Free to Contact Me With Issues or Feature Requests at
+				a(href='mailto:development@melihsunbul.com', style='color:#444444;') &nbsp;development@melihsunbul.com&nbsp;
+					span.glyphicon.glyphicon-envelope(style='vertical-align:top;')
+			p
+				| Disclaimer: This product has been developed by Melih Sünbül it is not owned or operated by the Bilkent University. Data will be updated regularly and automatically, but I cannot guarantee effectiveness. Please contact me if you find any issues.
+		style(type="text/css").
+			@media screen and (min-width: 992px) {
+				div.vdivide {
+					border-left: 1px solid #A4A4A4;
+				}
+
+				hr.vdivide {
+					display: none;
+				}
+			}
+		hr.vdivide(style='border-top-color:#A4A4A4')
+		div.col-md-6.vdivide
+			h4 Stats For Nerds
+			ul.list-group
+				li.list-group-item Time to Compute: #{time_used}
+				li.list-group-item Maximum Memory Used: #{max_memory_used} kilobytes
