@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Mike
- * Date: 6/11/2017
- * Time: 3:31 PM
- */
+
 class MySQLDAL {
 	private $pdo;
 
