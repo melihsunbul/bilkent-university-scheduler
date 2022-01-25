@@ -17,7 +17,7 @@ Although there are many customizations that are probably specific to only the Bi
 
 
 ## Theory of Operation
-The new algorithm implemented by commit 9102865 is the Bron-Kerbosch maximal clique finding algorithm. I realized that the scheduling program could be thought of as a graph where vertices represent a section of a class and edges exist between vertices that are compatible (can be taken together).
+The new algorithm implemented is the Bron-Kerbosch maximal clique finding algorithm. I realized that the scheduling program could be thought of as a graph where vertices represent a section of a class and edges exist between vertices that are compatible (can be taken together).
 
 Representing the problem as a graph means that possible non-conflicting schedules are maximal cliques. Therefore, to find all possible schedules, I implemented the Bron-Kerbosch maximal clique finding algorithm. 
 
